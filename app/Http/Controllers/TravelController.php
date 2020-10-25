@@ -58,14 +58,44 @@ class TravelController extends Controller
     public function getItinerary() {
         
         $items = Itinerary::all();
-
         $itinerary = array();
 
         foreach($items as $item){
-            $array = array($item["start"]);
-            $itinerary = array_merge($itinerary,$array);
+            $array = array(
+                $item['start']
+            );
+            $itinerary = array_merge($itinerary,$array); 
+        }
+        // foreach($items as $item){
+        //     $array = array(
+        //         'city'=>$item['start'],
+        //         'image'=>$item['image']
+        //     );
+        //     array_push($itinerary,$array);
+        //     // $itinerary[] = $array;   
+        // }
+        // dd($itinerary);
+
+        $list = Travel::all();
+        $item_travel = array();
+        foreach($list as $item){
+            // echo $item;
+            // echo $item["start"];
+            // echo $item["end"];
+
+            $array = array([
+                "e" => $item["start"],
+                "image" => $item["image"]
+            ]);
+
+            $item_travel = array_merge($item_travel,$array);
         }
 
-        return view('welcome')->with('itinerary',$itinerary);
+        return view('welcome')->with([
+            'itinerary' => $itinerary,
+            'item_travel' => $item_travel
+        ]);
     }
+
+
 }

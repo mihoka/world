@@ -1,4 +1,5 @@
 window.GIO = require('giojs');
+// let image = "img/sweet/newyork.jpg";
 
 // var container = document.getElementById("globalArea");
 
@@ -11,7 +12,7 @@ var config = {
         "outOnly": false,
         "initCountry": "CN",
         "halo": true,
-        "transparentBackground": false,
+        "transparentBackground": true,
         "autoRotation": false,
         "rotationRatio": 1
     },
@@ -21,7 +22,7 @@ var config = {
         "in": 16777215,
         "out": 2141154,
         "halo": 2141154,
-        "background": 10528696
+        // "background": 10528696
     },
     "brightness": {
         "ocean": 0.35,
@@ -30,45 +31,24 @@ var config = {
     }
 };
 
-// var data1 = [
-//   { e: "JP", i: "CN", v: 800000 },
-//   { e: "CN", i: "US", v: 800000},
-//   { e: "US", i: "JP", v: 800000}
-// ]
+function backimage(image) {
+    const bg = document.getElementById("bg");
+    bg.style.backgroundImage = image;
+}
+    
+function setimage(country) {
+    for (i = 0; i < bg_image.length ; i++){
 
-// var data2 = [
-//   { e: "JP", i: "AU", v: 800000 },
-//   { e: "AU", i: "US", v: 800000},
-//   { e: "US", i: "JP", v: 800000} 
-// ]
+        if (bg_image[i]['e'] === country) {
+            return bg_image[i]['image'];
 
-// var data = {
-//   dataSetKeys: ['sweet', 'photo'],
-//   initDataSet: 'sweet',
-//   sweet: data1,
-//   photo: data2
-// }
-
-// var controller = new GIO.Controller(container, config);
-// controller.setTransparentBackground( true );
-// controller.setInitCountry("JP");
-
-// $( "#sweet" ).click( function () {
-//   controller.switchDataSet("sweet");
-//   controller.switchCountry( "JP" );
-// } );
-
-// $( "#photo" ).click( function () {
-//   controller.switchDataSet("photo");
-//   controller.switchCountry( "JP" );
-
-// });
-
-// controller.addData(data);
-// controller.init();
-
+            // backimage(`url(${bg_image[i]['image']})`);
+        } 
+    }
+}
 
 $(document).ready(function () {
+
     $.ajax({
         type: 'GET',
         // url: 'gio_data',
@@ -78,7 +58,7 @@ $(document).ready(function () {
     }).done(function (results) {
         const container = document.getElementById("globalArea");
         const controller = new GIO.Controller(container, config);
-        controller.onCountryPicked( callback );
+        controller.onCountryPicked(callback);
         controller.setInitCountry("JP");
         controller.setTransparentBackground(true);
 
@@ -87,17 +67,18 @@ $(document).ready(function () {
             controller.switchCountry("JP");
         });
 
-        function callback ( selectedCountry ) {
-
+        function callback(selectedCountry) {
+            let image = setimage(selectedCountry['ISOCode']);
+            backimage(`url(${image})`);
+            
             $( "#countryArea" ).text( "次はこの国！" + selectedCountry.name );
-            $( "#infoBoard" ).fadeIn( 1000 );
-    
+            $("#infoBoard").fadeIn(1000);
+  
+            
             setTimeout( function () {
-
                 $( "#infoBoard" ).fadeOut( 1000 );
-    
-            }, 3000 );
-    
+            }, 3000);
+
         }
 
         // $("#photo").click(function () {

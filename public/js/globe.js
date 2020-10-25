@@ -53543,7 +53543,8 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-window.GIO = __webpack_require__(/*! giojs */ "./node_modules/giojs/build/gio.module.js"); // var container = document.getElementById("globalArea");
+window.GIO = __webpack_require__(/*! giojs */ "./node_modules/giojs/build/gio.module.js"); // let image = "img/sweet/newyork.jpg";
+// var container = document.getElementById("globalArea");
 
 var config = {
   "control": {
@@ -53554,7 +53555,7 @@ var config = {
     "outOnly": false,
     "initCountry": "CN",
     "halo": true,
-    "transparentBackground": false,
+    "transparentBackground": true,
     "autoRotation": false,
     "rotationRatio": 1
   },
@@ -53563,43 +53564,28 @@ var config = {
     "selected": 2141154,
     "in": 16777215,
     "out": 2141154,
-    "halo": 2141154,
-    "background": 10528696
+    "halo": 2141154 // "background": 10528696
+
   },
   "brightness": {
     "ocean": 0.35,
     "mentioned": 0,
     "related": 1
   }
-}; // var data1 = [
-//   { e: "JP", i: "CN", v: 800000 },
-//   { e: "CN", i: "US", v: 800000},
-//   { e: "US", i: "JP", v: 800000}
-// ]
-// var data2 = [
-//   { e: "JP", i: "AU", v: 800000 },
-//   { e: "AU", i: "US", v: 800000},
-//   { e: "US", i: "JP", v: 800000} 
-// ]
-// var data = {
-//   dataSetKeys: ['sweet', 'photo'],
-//   initDataSet: 'sweet',
-//   sweet: data1,
-//   photo: data2
-// }
-// var controller = new GIO.Controller(container, config);
-// controller.setTransparentBackground( true );
-// controller.setInitCountry("JP");
-// $( "#sweet" ).click( function () {
-//   controller.switchDataSet("sweet");
-//   controller.switchCountry( "JP" );
-// } );
-// $( "#photo" ).click( function () {
-//   controller.switchDataSet("photo");
-//   controller.switchCountry( "JP" );
-// });
-// controller.addData(data);
-// controller.init();
+};
+
+function backimage(image) {
+  var bg = document.getElementById("bg");
+  bg.style.backgroundImage = image;
+}
+
+function setimage(country) {
+  for (i = 0; i < bg_image.length; i++) {
+    if (bg_image[i]['e'] === country) {
+      return bg_image[i]['image']; // backimage(`url(${bg_image[i]['image']})`);
+    }
+  }
+}
 
 $(document).ready(function () {
   $.ajax({
@@ -53620,6 +53606,8 @@ $(document).ready(function () {
     });
 
     function callback(selectedCountry) {
+      var image = setimage(selectedCountry['ISOCode']);
+      backimage("url(".concat(image, ")"));
       $("#countryArea").text("次はこの国！" + selectedCountry.name);
       $("#infoBoard").fadeIn(1000);
       setTimeout(function () {
