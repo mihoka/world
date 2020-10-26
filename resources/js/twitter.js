@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     $.ajax({
-        type: 'POST',
+        type: 'GET',
         // url: 'gio_data',
         url: 'twitter',
         // url: '/sampleData.json',

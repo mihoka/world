@@ -14,6 +14,7 @@ class TravelController extends Controller
 
         $items = Travel::all();
         $list = array();
+
         foreach($items as $item){
             // echo $item;
             // echo $item["start"];
@@ -27,6 +28,7 @@ class TravelController extends Controller
 
             $list = array_merge($list,$array);
         }
+
 
         // foreach($list as $test){
         //     echo $test["e"];
@@ -55,6 +57,7 @@ class TravelController extends Controller
         //  return view('welcome')->with('travel',$travel);
 
     }
+
     public function getItinerary() {
         
         $items = Itinerary::all();
@@ -91,11 +94,22 @@ class TravelController extends Controller
             $item_travel = array_merge($item_travel,$array);
         }
 
+        // $search_tag = \Twitter::get("search/tweets", array("q" => "", 'count' => 10));
+        // $result = array();
+
+                
+        // foreach($search_tag as $key => $value){
+
+        //     if($key === "statuses"){
+        //         $result = array_merge($result,$value);
+        //     }
+        // }
+
         return view('welcome')->with([
             'itinerary' => $itinerary,
             'item_travel' => $item_travel
+            // 'result' => $result
         ]);
     }
-
 
 }

@@ -27,4 +27,5 @@ Route::get('gio_data', 'GioController@gioSampleData');
 Route::get('travel_data', 'TravelController@getTravel');
 // Route::get('itinerary_data', 'TravelController@getItinerary');
 Route::get('/', 'TravelController@getItinerary');
-Route::get('twitter', 'TwitterController@index');
+Route::get('twitter/{tag?}', 'TwitterController@index');
+// Route::get('/', 'TwitterController@index');

@@ -53587,6 +53587,16 @@ function setimage(country) {
   }
 }
 
+function setcity(city) {
+  var str = city; // /で分割
+
+  var result = str.split('/'); // .jpgを削除
+
+  str = result[3];
+  result = str.replace('.jpg', '');
+  return result;
+}
+
 $(document).ready(function () {
   $.ajax({
     type: 'GET',
@@ -53607,12 +53617,23 @@ $(document).ready(function () {
 
     function callback(selectedCountry) {
       var image = setimage(selectedCountry['ISOCode']);
-      backimage("url(".concat(image, ")"));
+      backimage("url(".concat(image, ")")); // let city = city(image);
+      // console.log(setcity(image));
+
       $("#countryArea").text("次はこの国！" + selectedCountry.name);
       $("#infoBoard").fadeIn(1000);
       setTimeout(function () {
         $("#infoBoard").fadeOut(1000);
       }, 3000);
+      var tag = "yps1";
+      $.ajax({
+        type: 'GET',
+        url: 'twitter' + '/' + tag,
+        // data: tag,
+        dataType: 'json'
+      }).done(function (results) {
+        console.log(results);
+      });
     } // $("#photo").click(function () {
     //     controller.switchDataSet("photo");
     //     controller.switchCountry("JP");

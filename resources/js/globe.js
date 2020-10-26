@@ -35,16 +35,28 @@ function backimage(image) {
     const bg = document.getElementById("bg");
     bg.style.backgroundImage = image;
 }
-    
+
 function setimage(country) {
-    for (i = 0; i < bg_image.length ; i++){
+    for (i = 0; i < bg_image.length; i++) {
 
         if (bg_image[i]['e'] === country) {
             return bg_image[i]['image'];
-
             // backimage(`url(${bg_image[i]['image']})`);
-        } 
+        }
     }
+}
+
+function setcity(city) {
+    let str = city;
+
+    // /で分割
+    let result = str.split('/');
+
+    // .jpgを削除
+    str = result[3];
+    result = str.replace('.jpg', '');
+
+    return result;
 }
 
 $(document).ready(function () {
@@ -70,14 +82,33 @@ $(document).ready(function () {
         function callback(selectedCountry) {
             let image = setimage(selectedCountry['ISOCode']);
             backimage(`url(${image})`);
-            
-            $( "#countryArea" ).text( "次はこの国！" + selectedCountry.name );
+
+            // let city = city(image);
+            // console.log(setcity(image));
+
+            $("#countryArea").text("次はこの国！" + selectedCountry.name);
             $("#infoBoard").fadeIn(1000);
-  
-            
-            setTimeout( function () {
-                $( "#infoBoard" ).fadeOut( 1000 );
+
+
+            setTimeout(function () {
+                $("#infoBoard").fadeOut(1000);
             }, 3000);
+
+            let tag = "yps1";
+
+
+            $.ajax({
+                type: 'GET',
+                url: 'twitter'+'/' + tag,
+                // data: tag,
+                dataType: 'json',
+            }).done(function (results) {
+
+                console.log(results);
+
+            })
+
+
 
         }
 
@@ -86,7 +117,7 @@ $(document).ready(function () {
         //     controller.switchCountry("JP");
 
         // });
-      
+
         controller.addData(results);
         controller.init();
     }).fail(function (jqXHR, textStatus, errorThrown) {

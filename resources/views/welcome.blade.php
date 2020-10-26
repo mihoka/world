@@ -40,13 +40,19 @@
 
     </div>
 
+    <div id="app">
+<example-component></example-component>
+</div>
 
     <!-- <script src="https://raw.githack.com/syt123450/giojs/master/assets/data/sampleData.js"></script> -->
     <script src="{{ asset('js/app.js') }}"></script>
     <script>
-         bg_image=@json($item_travel);
+        bg_image = @json($item_travel);
+        itinerary = @json($itinerary);
     </script>
     <script src="{{ asset('js/globe.js') }}"></script>
+
+
 
 
 </body>
