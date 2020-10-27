@@ -53543,8 +53543,8 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-window.GIO = __webpack_require__(/*! giojs */ "./node_modules/giojs/build/gio.module.js"); // let image = "img/sweet/newyork.jpg";
-// var container = document.getElementById("globalArea");
+// const { default: VueRouter } = require('vue-router');
+window.GIO = __webpack_require__(/*! giojs */ "./node_modules/giojs/build/gio.module.js"); // var container = document.getElementById("globalArea");
 
 var config = {
   "control": {
@@ -53597,6 +53597,22 @@ function setcity(city) {
   return result;
 }
 
+var User = {
+  template: '<div>UserID: {{$route.params.id}}</div>'
+};
+var routes = [{
+  path: '/user/:id',
+  component: User
+}];
+var router = new VueRouter({
+  mode: 'history',
+  routes: routes
+}); // export default router
+
+var app3 = new Vue({
+  el: '#app3',
+  router: router
+}).$mount('#app3');
 $(document).ready(function () {
   $.ajax({
     type: 'GET',
@@ -53617,22 +53633,27 @@ $(document).ready(function () {
 
     function callback(selectedCountry) {
       var image = setimage(selectedCountry['ISOCode']);
-      backimage("url(".concat(image, ")")); // let city = city(image);
-      // console.log(setcity(image));
-
+      backimage("url(".concat(image, ")"));
       $("#countryArea").text("次はこの国！" + selectedCountry.name);
       $("#infoBoard").fadeIn(1000);
       setTimeout(function () {
         $("#infoBoard").fadeOut(1000);
-      }, 3000);
-      var tag = "yps1";
+      }, 3000); // console.log(setcity(image));
+
+      var tag = setcity(image);
       $.ajax({
         type: 'GET',
         url: 'twitter' + '/' + tag,
         // data: tag,
         dataType: 'json'
-      }).done(function (results) {
-        console.log(results);
+      }).done(function (results2) {
+        console.log(results2);
+        var app2 = new Vue({
+          el: '#app2',
+          data: {
+            item: results2
+          }
+        });
       });
     } // $("#photo").click(function () {
     //     controller.switchDataSet("photo");

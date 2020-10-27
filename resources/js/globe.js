@@ -1,5 +1,6 @@
+// const { default: VueRouter } = require('vue-router');
+
 window.GIO = require('giojs');
-// let image = "img/sweet/newyork.jpg";
 
 // var container = document.getElementById("globalArea");
 
@@ -59,6 +60,31 @@ function setcity(city) {
     return result;
 }
 
+
+const User = {
+    template: '<div>UserID: {{$route.params.id}}</div>'
+}
+
+const routes  = [
+    {path: '/user/:id', component: User}
+]
+
+const router = new VueRouter({
+    mode: 'history',
+    routes
+})
+
+
+// export default router
+
+const app3 = new Vue({
+    el: '#app3',
+    router
+}).$mount('#app3');
+
+
+
+
 $(document).ready(function () {
 
     $.ajax({
@@ -83,9 +109,6 @@ $(document).ready(function () {
             let image = setimage(selectedCountry['ISOCode']);
             backimage(`url(${image})`);
 
-            // let city = city(image);
-            // console.log(setcity(image));
-
             $("#countryArea").text("次はこの国！" + selectedCountry.name);
             $("#infoBoard").fadeIn(1000);
 
@@ -94,17 +117,26 @@ $(document).ready(function () {
                 $("#infoBoard").fadeOut(1000);
             }, 3000);
 
-            let tag = "yps1";
+            // console.log(setcity(image));
 
+            let tag = (setcity(image));
 
             $.ajax({
                 type: 'GET',
-                url: 'twitter'+'/' + tag,
+                url: 'twitter' + '/' + tag,
                 // data: tag,
                 dataType: 'json',
-            }).done(function (results) {
+            }).done(function (results2) {
 
-                console.log(results);
+                console.log(results2);
+
+                const app2 = new Vue({
+                    el: '#app2',
+                    data: {
+                        item: results2
+                    }
+
+                });
 
             })
 

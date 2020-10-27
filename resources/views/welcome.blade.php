@@ -39,10 +39,48 @@
         </div>
 
     </div>
+    @{{ twitter }}
 
     <div id="app">
-<example-component></example-component>
-</div>
+        @{{msg}}
+        <!-- <example-component></example-component> -->
+    </div>
+    <div id="app2">
+        <p v-for="num in item">@{{num.text}}<br>@{{num.user.name}}</p>
+    </div>
+
+    <div id="app3">
+        <ul>
+            <li><router-link to="/user/A">User A</router-link></li>
+            <li><router-link to="/user/B">User B</router-link></li>
+        </ul>
+        <router-view></router-view>
+    </div>
+
+    <!-- <div class="container" id="app2">
+
+        <div class="card mb-2" v-for="num in item">
+            <div class="card-body">
+                <div class="media">
+                    <img src="https://placehold.jp/70x70.png" class="rounded-circle mr-4">
+                    <div class="media-body">
+                        <h5 class="d-inline mr-3"><strong> @{{num.user.name}} </strong></h5>
+                        <h6 class="d-inline text-secondary"> @{{num.created_at}} </h6>
+                        <p class="mt-3 mb-0"> @{{num.text}} </p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-white border-top-0">
+                <div class="d-flex flex-row justify-content-end">
+                    <div class="mr-5"><i class="far fa-comment text-secondary"></i></div>
+                    <div class="mr-5"><i class="fas fa-retweet text-secondary"></i></div>
+                    <div class="mr-5"><i class="far fa-heart text-secondary"></i></div>
+                </div>
+            </div>
+        </div>
+
+    </div> -->
+
 
     <!-- <script src="https://raw.githack.com/syt123450/giojs/master/assets/data/sampleData.js"></script> -->
     <script src="{{ asset('js/app.js') }}"></script>
