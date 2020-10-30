@@ -53543,6 +53543,18 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
 // const { default: VueRouter } = require('vue-router');
 window.GIO = __webpack_require__(/*! giojs */ "./node_modules/giojs/build/gio.module.js"); // var container = document.getElementById("globalArea");
 
@@ -53595,24 +53607,23 @@ function setcity(city) {
   str = result[3];
   result = str.replace('.jpg', '');
   return result;
-}
+} // const User = {
+//     template: '<div>UserID: {{$route.params.id}}</div>'
+// }
+// const routes  = [
+//     {path: '/user/:id', component: User}
+// ]
+// const router = new VueRouter({
+//     mode: 'history',
+//     routes
+// })
+// export default router
+// const app3 = new Vue({
+//     el: '#app3',
+//     router
+// }).$mount('#app3');
 
-var User = {
-  template: '<div>UserID: {{$route.params.id}}</div>'
-};
-var routes = [{
-  path: '/user/:id',
-  component: User
-}];
-var router = new VueRouter({
-  mode: 'history',
-  routes: routes
-}); // export default router
 
-var app3 = new Vue({
-  el: '#app3',
-  router: router
-}).$mount('#app3');
 $(document).ready(function () {
   $.ajax({
     type: 'GET',
@@ -53641,20 +53652,71 @@ $(document).ready(function () {
       }, 3000); // console.log(setcity(image));
 
       var tag = setcity(image);
+      var a = new Array();
       $.ajax({
         type: 'GET',
         url: 'twitter' + '/' + tag,
-        // data: tag,
         dataType: 'json'
       }).done(function (results2) {
-        console.log(results2);
+        a = _toConsumableArray(results2); // console.log(results2);
+
         var app2 = new Vue({
           el: '#app2',
-          data: {
-            item: results2
-          }
+          data: function data() {
+            return {
+              item: a
+            };
+          } // ,
+          // mounted: function() {
+          //     this.getitem();
+          // },
+          // methods: {
+          //     getitem: function () {
+          //         this.$nextTick(function () {
+          //             // await this.$nextTick()
+          //             console.log(a);
+          //             // this.item = [];
+          //             this.item.splice(0);
+          //             this.item.push(...a);
+          //         })
+          //     }
+          // }
+
         });
+        Vue.nextTick(function () {
+          var _app2$item;
+
+          // app2.item.splice(0, app2.item.length);
+          app2.item.splice(0);
+
+          (_app2$item = app2.item).push.apply(_app2$item, _toConsumableArray(a));
+
+          console.log(app2.item[0].text); // return app2.item;
+        }); // const app2 = new Vue({
+        //     el: '#app2',
+        //     data: {
+        //         item: "",
+        //     },
+        //     methods: {
+        //         incrementArray() {
+        //             this.$nextTick(function() {
+        //                 this.$set(this.item, results2);
+        //                 // this.splice(0, this.length, ...results2);
+        //                 // this.item.splice(0, 1, results2);
+        //                 // app2 = { ...app2, item: results2 };
+        //                 // this.item = results2;
+        //             })
+        //         }
+        //     }
+        // });
+        // // app2.item = results2;
+        // Vue.nextTick(function () {
+        // // app2.item = results2;
+        //     app2 = { ...app2, item:results2}
+        //     // app2.item.splice(0, 0, results2);
+        // })
       });
+      console.log(app2);
     } // $("#photo").click(function () {
     //     controller.switchDataSet("photo");
     //     controller.switchCountry("JP");

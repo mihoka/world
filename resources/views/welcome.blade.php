@@ -39,25 +39,20 @@
         </div>
 
     </div>
-    @{{ twitter }}
 
-    <div id="app">
-        @{{msg}}
-        <!-- <example-component></example-component> -->
-    </div>
-    <div id="app2">
-        <p v-for="num in item">@{{num.text}}<br>@{{num.user.name}}</p>
-    </div>
+    <!-- <div id="app2">
+        <p v-for="num in item" ref="comment">@{{num.text}}<br>@{{num.user.name}}</p>
+    </div> -->
 
-    <div id="app3">
+    <!-- <div id="app3">
         <ul>
             <li><router-link to="/user/A">User A</router-link></li>
             <li><router-link to="/user/B">User B</router-link></li>
         </ul>
         <router-view></router-view>
-    </div>
+    </div> -->
 
-    <!-- <div class="container" id="app2">
+    <div class="container" id="app2">
 
         <div class="card mb-2" v-for="num in item">
             <div class="card-body">
@@ -79,7 +74,7 @@
             </div>
         </div>
 
-    </div> -->
+    </div>
 
 
     <!-- <script src="https://raw.githack.com/syt123450/giojs/master/assets/data/sampleData.js"></script> -->

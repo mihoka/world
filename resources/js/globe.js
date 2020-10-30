@@ -61,26 +61,26 @@ function setcity(city) {
 }
 
 
-const User = {
-    template: '<div>UserID: {{$route.params.id}}</div>'
-}
+// const User = {
+//     template: '<div>UserID: {{$route.params.id}}</div>'
+// }
 
-const routes  = [
-    {path: '/user/:id', component: User}
-]
+// const routes  = [
+//     {path: '/user/:id', component: User}
+// ]
 
-const router = new VueRouter({
-    mode: 'history',
-    routes
-})
+// const router = new VueRouter({
+//     mode: 'history',
+//     routes
+// })
 
 
 // export default router
 
-const app3 = new Vue({
-    el: '#app3',
-    router
-}).$mount('#app3');
+// const app3 = new Vue({
+//     el: '#app3',
+//     router
+// }).$mount('#app3');
 
 
 
@@ -121,24 +121,103 @@ $(document).ready(function () {
 
             let tag = (setcity(image));
 
+            let a = new Array();
+
             $.ajax({
                 type: 'GET',
                 url: 'twitter' + '/' + tag,
-                // data: tag,
                 dataType: 'json',
             }).done(function (results2) {
+                
+                a = [...results2];
 
-                console.log(results2);
+                // console.log(results2);
 
                 const app2 = new Vue({
                     el: '#app2',
-                    data: {
-                        item: results2
-                    }
+                    data: function(){
+                        return {
+                            item: a,
+                        }
 
-                });
+                    }
+                    // ,
+                    // mounted: function() {
+                    //     this.getitem();
+            
+                    // },
+                    // methods: {
+
+                    //     getitem: function () {
+                            
+                            
+                    //         this.$nextTick(function () {
+                             
+                    //             // await this.$nextTick()
+                    //             console.log(a);
+                    //             // this.item = [];
+                    //             this.item.splice(0);
+                    //             this.item.push(...a);
+                        
+        
+                    //         })
+  
+                    //     }
+                    // }
+  
+
+                })
+                Vue.nextTick(function () {
+                    // app2.item.splice(0, app2.item.length);
+                    app2.item.splice(0);
+                    app2.item.push(...a);
+                    console.log(app2.item[0].text);
+                    // return app2.item;
+                    
+                 })
+
+
+
+
+
+                // const app2 = new Vue({
+                //     el: '#app2',
+                //     data: {
+                //         item: "",
+                //     },
+                //     methods: {
+
+                //         incrementArray() {
+                //             this.$nextTick(function() {
+                //                 this.$set(this.item, results2);
+                //                 // this.splice(0, this.length, ...results2);
+                //                 // this.item.splice(0, 1, results2);
+                //                 // app2 = { ...app2, item: results2 };
+                //                 // this.item = results2;
+                //             })
+  
+                //         }
+                //     }
+  
+
+                // });
+
+
+
+
+
+                // // app2.item = results2;
+                // Vue.nextTick(function () {
+                // // app2.item = results2;
+                //     app2 = { ...app2, item:results2}
+                //     // app2.item.splice(0, 0, results2);
+                // })
+
+
 
             })
+            console.log(app2);
+
 
 
 
