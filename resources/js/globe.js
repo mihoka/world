@@ -141,6 +141,7 @@ $(document).ready(function () {
                         }
 
                     }
+                    
                     // ,
                     // mounted: function() {
                     //     this.getitem();
@@ -170,7 +171,7 @@ $(document).ready(function () {
                 Vue.nextTick(function () {
                     // app2.item.splice(0, app2.item.length);
                     app2.item.splice(0);
-                    app2.item.push(...a);
+                    app2.item.push(...results2);
                     console.log(app2.item[0].text);
                     // return app2.item;
                     

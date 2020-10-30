@@ -53689,7 +53689,7 @@ $(document).ready(function () {
           // app2.item.splice(0, app2.item.length);
           app2.item.splice(0);
 
-          (_app2$item = app2.item).push.apply(_app2$item, _toConsumableArray(a));
+          (_app2$item = app2.item).push.apply(_app2$item, _toConsumableArray(results2));
 
           console.log(app2.item[0].text); // return app2.item;
         }); // const app2 = new Vue({
