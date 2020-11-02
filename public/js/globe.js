@@ -53543,18 +53543,6 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
-
-function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
-
-function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
 // const { default: VueRouter } = require('vue-router');
 window.GIO = __webpack_require__(/*! giojs */ "./node_modules/giojs/build/gio.module.js"); // var container = document.getElementById("globalArea");
 
@@ -53592,7 +53580,7 @@ function backimage(image) {
 }
 
 function setimage(country) {
-  for (i = 0; i < bg_image.length; i++) {
+  for (var i = 0; i < bg_image.length; i++) {
     if (bg_image[i]['e'] === country) {
       return bg_image[i]['image']; // backimage(`url(${bg_image[i]['image']})`);
     }
@@ -53652,71 +53640,20 @@ $(document).ready(function () {
       }, 3000); // console.log(setcity(image));
 
       var tag = setcity(image);
-      var a = new Array();
       $.ajax({
         type: 'GET',
         url: 'twitter' + '/' + tag,
         dataType: 'json'
       }).done(function (results2) {
-        a = _toConsumableArray(results2); // console.log(results2);
+        console.log(results2);
+        var html = "";
+        results2.forEach(function (tweet) {
+          var html_tweet = "\n                    <div class=\"card mb-2\">\n                    <div class=\"media\">\n                    <img src=".concat(tweet.user.profile_image_url, " class=\"rounded-circle mr-4\">\n                    <div class=\"media-body\">\n                    <h5 class=\"d-inline mr-3\"><strong> ").concat(tweet.user.name, " </strong></h5>\n                    <h6 class=\"d-inline text-secondary\"> ").concat(tweet.created_at, " </h6>\n                    <p class=\"mt-3 mb-0\"> ").concat(tweet.text, " </p>\n                    </div>\n                    </div>\n                    </div>\n\n                    <div class=\"border-top-0\">\n                    <div class=\"d-flex flex-row justify-content-end\">\n                       <div class=\"mr-5\"><i class=\"far fa-comment text-secondary\"></i></div>\n                       <div class=\"mr-5\"><i class=\"fas fa-retweet text-secondary\"></i></div>\n                       <div class=\"mr-5\"><i class=\"far fa-heart text-secondary\"></i></div>\n                    </div>\n                    </div>\n                    </div>\n                    ");
+          html = html + html_tweet; // console.log(html);
 
-        var app2 = new Vue({
-          el: '#app2',
-          data: function data() {
-            return {
-              item: a
-            };
-          } // ,
-          // mounted: function() {
-          //     this.getitem();
-          // },
-          // methods: {
-          //     getitem: function () {
-          //         this.$nextTick(function () {
-          //             // await this.$nextTick()
-          //             console.log(a);
-          //             // this.item = [];
-          //             this.item.splice(0);
-          //             this.item.push(...a);
-          //         })
-          //     }
-          // }
-
+          document.getElementById('app2').innerHTML = html;
         });
-        Vue.nextTick(function () {
-          var _app2$item;
-
-          // app2.item.splice(0, app2.item.length);
-          app2.item.splice(0);
-
-          (_app2$item = app2.item).push.apply(_app2$item, _toConsumableArray(results2));
-
-          console.log(app2.item[0].text); // return app2.item;
-        }); // const app2 = new Vue({
-        //     el: '#app2',
-        //     data: {
-        //         item: "",
-        //     },
-        //     methods: {
-        //         incrementArray() {
-        //             this.$nextTick(function() {
-        //                 this.$set(this.item, results2);
-        //                 // this.splice(0, this.length, ...results2);
-        //                 // this.item.splice(0, 1, results2);
-        //                 // app2 = { ...app2, item: results2 };
-        //                 // this.item = results2;
-        //             })
-        //         }
-        //     }
-        // });
-        // // app2.item = results2;
-        // Vue.nextTick(function () {
-        // // app2.item = results2;
-        //     app2 = { ...app2, item:results2}
-        //     // app2.item.splice(0, 0, results2);
-        // })
       });
-      console.log(app2);
     } // $("#photo").click(function () {
     //     controller.switchDataSet("photo");
     //     controller.switchCountry("JP");

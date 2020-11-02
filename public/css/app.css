@@ -21911,3 +21911,20 @@ body {
   content: "";
 }
 
+#app2 {
+  position: absolute;
+  top: 10;
+  right: 0;
+  width: 30%;
+  color: #cbcbcb;
+}
+
+#app2 .card {
+  background-color: rgba(110, 110, 110, 0.8);
+}
+
+#app2 .card img {
+  width: 70px;
+  height: 70px;
+}
+

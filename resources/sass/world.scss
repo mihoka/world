@@ -1,70 +1,72 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-html, body {
-  color: #636b6f;
-  font-family: $font-family-sans-serif;
-  font-weight: 200;
-  height: 100vh;
+html,
+body {
+    color: #636b6f;
+    font-family: $font-family-sans-serif;
+    font-weight: 200;
+    height: 100vh;
 }
 
 .full-height {
-  height: 100vh;
+    height: 100vh;
 }
 
 .flex-center {
-  align-items: center;
-  display: flex;
-  justify-content: center;
+    align-items: center;
+    display: flex;
+    justify-content: center;
 }
 
 .position-ref {
-  position: relative;
+    position: relative;
 }
 
 .top-right {
-  position: absolute;
-  right: 10px;
-  top: 18px;
+    position: absolute;
+    right: 10px;
+    top: 18px;
 }
 
 .content {
-  text-align: center;
+    text-align: center;
 }
 
 .title {
-  font-size: 84px;
+    font-size: 84px;
 }
 
-.links > a {
-  color: #636b6f;
-  padding: 0 25px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: .1rem;
-  text-decoration: none;
-  text-transform: uppercase;
+.links>a {
+    color: #636b6f;
+    padding: 0 25px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
 }
 
 .m-b-md {
-  margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 
 #infoBoard {
-  position: absolute;
-  left: 35%;
-  top: 40%;
-  width: 400px;
-  height: 100px;
-  line-height: 50px;
-  text-align: center;
-  color: white;
-  font-size: 20px;
-  background-color: rgba(106, 107, 111, 0.6);
-  display: none;
+    position: absolute;
+    left: 35%;
+    top: 40%;
+    width: 400px;
+    height: 100px;
+    line-height: 50px;
+    text-align: center;
+    color: white;
+    font-size: 20px;
+    background-color: rgba(106, 107, 111, 0.6);
+    display: none;
 }
-      
-  #sweet, #photo {
+
+#sweet,
+#photo {
     position: absolute;
     left: 100px;
     width: 250px;
@@ -79,46 +81,65 @@ html, body {
     border-radius: 5px;
     background-color: rgba(110, 110, 110, 0.8);
 
-    }
+}
 
-    #sweet:hover, #photo:hover {
+#sweet:hover,
+#photo:hover {
 
     color: #fff;
     background-color: #929292;
 
-    }
+}
 
-    #sweet {
+#sweet {
     top: 200px;
-    }
+}
 
-    #sweet ul{
-        top: 250px;
-        color: #fff;
-    }
+#sweet ul {
+    top: 250px;
+    color: #fff;
+}
 
-    #sweet ul li{
-        line-height: 30px;
-    }
+#sweet ul li {
+    line-height: 30px;
+}
 
 
-    #photo {
+#photo {
     top: 500px;
-    }
+}
 
-    #bg{
-      background-image: url(/img/sweet/tokyo.jpg);
-      background-size: cover;
-      position: relative;
-      height: 100%;
+#bg {
+    background-image: url(/img/sweet/tokyo.jpg);
+    background-size: cover;
+    position: relative;
+    height: 100%;
 
-      #globalArea{
+    #globalArea {
         position: absolute;
-        background-color: rgba(0,0,0,0.4);
-        top:0;
+        background-color: rgba(0, 0, 0, 0.4);
+        top: 0;
         right: 0;
         left: 0;
         bottom: 0;
         content: "";
-      }
     }
+}
+
+#app2 {
+  position: absolute;
+  top:10;
+  right: 0;
+  width: 30%;
+  color: #cbcbcb;
+
+  .card{
+    // background-color: rgba(255, 255, 255, 0.1);
+    background-color:rgba(110, 110, 110, 0.8);
+
+    img{
+      width: 70px;
+      height: 70px;
+    }
+  }
+}

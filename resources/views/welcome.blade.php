@@ -37,22 +37,14 @@
             <div id="countryArea"></div>
             <div id="explanation">楽しい旅を！</div>
         </div>
-
+        
+        <div class="container" id="app2">
+        </div>
+        
     </div>
 
-    <!-- <div id="app2">
-        <p v-for="num in item" ref="comment">@{{num.text}}<br>@{{num.user.name}}</p>
-    </div> -->
 
-    <!-- <div id="app3">
-        <ul>
-            <li><router-link to="/user/A">User A</router-link></li>
-            <li><router-link to="/user/B">User B</router-link></li>
-        </ul>
-        <router-view></router-view>
-    </div> -->
-
-    <div class="container" id="app2">
+    <!-- <div class="container" id="app2">
 
         <div class="card mb-2" v-for="num in item">
             <div class="card-body">
@@ -74,18 +66,17 @@
             </div>
         </div>
 
-    </div>
+    </div> -->
 
 
     <!-- <script src="https://raw.githack.com/syt123450/giojs/master/assets/data/sampleData.js"></script> -->
-    <script src="{{ asset('js/app.js') }}"></script>
+
+    <script src="{{ asset('js/app.js') }}" defer></script>
     <script>
         bg_image = @json($item_travel);
         itinerary = @json($itinerary);
     </script>
-    <script src="{{ asset('js/globe.js') }}"></script>
-
-
+    <script src="{{ asset('js/globe.js') }}" defer></script>
 
 
 </body>

@@ -38,7 +38,7 @@ function backimage(image) {
 }
 
 function setimage(country) {
-    for (var i = 0; i < bg_image.length; i++) {
+    for (i = 0; i < bg_image.length; i++) {
 
         if (bg_image[i]['e'] === country) {
             return bg_image[i]['image'];
@@ -121,47 +121,121 @@ $(document).ready(function () {
 
             let tag = (setcity(image));
 
+            let a = new Array();
+
             $.ajax({
                 type: 'GET',
                 url: 'twitter' + '/' + tag,
                 dataType: 'json',
             }).done(function (results2) {
+                
+                a = [...results2];
+                console.log("1");
 
-                console.log(results2);
-                let html = "";
 
-                results2.forEach(tweet => {
+                document.addEventListener('DOMContentLoaded', function() {
+                const app2 = new Vue({
 
-                    let html_tweet = `
-                    <div class="card mb-2">
-                    <div class="media">
-                    <img src=${tweet.user.profile_image_url} class="rounded-circle mr-4">
-                    <div class="media-body">
-                    <h5 class="d-inline mr-3"><strong> ${tweet.user.name} </strong></h5>
-                    <h6 class="d-inline text-secondary"> ${tweet.created_at} </h6>
-                    <p class="mt-3 mb-0"> ${tweet.text} </p>
-                    </div>
-                    </div>
-                    </div>
+                    el: '#app2',
+                    data: function(){
+                        return {
+                            item: a,
+                        };
 
-                    <div class="border-top-0">
-                    <div class="d-flex flex-row justify-content-end">
-                       <div class="mr-5"><i class="far fa-comment text-secondary"></i></div>
-                       <div class="mr-5"><i class="fas fa-retweet text-secondary"></i></div>
-                       <div class="mr-5"><i class="far fa-heart text-secondary"></i></div>
-                    </div>
-                    </div>
+                    },
+                    template: `
+                    <div>
+                        <template v-for="num in $data.item">{{num.text}}<br>{{num.user.name}}</template>
                     </div>
                     `
+                    
+                    // ,
+                    // mounted: function() {
+                    //     this.getitem();
+            
+                    // },
+                    // methods: {
 
-                    html = html + html_tweet;
-                    // console.log(html);
+                    //     getitem: function () {
+                            
+                            
+                    //         this.$nextTick(function () {
+                             
+                    //             // await this.$nextTick()
+                    //             console.log(a);
+                    //             // this.item = [];
+                    //             this.item.splice(0);
+                    //             this.item.push(...a);
+                        
+        
+                    //         })
+  
+                    //     }
+                    // }
 
-                    document.getElementById('app2').innerHTML = html;
+  
 
-                });
+                })
+                Vue.nextTick(function () {
+                console.log("2");
+
+                    // app2.item.splice(0, app2.item.length);
+                    app2.item.splice(0);
+                    // app2.item.push(...results2);
+                    app2.item.push(...results2);
+                    console.log(app2.item[0]);
+
+                    return app2;
+                    // console.log(app2.item[0].text);
+                    // return app2.item;
+                    
+                })
+                    
+            });
+
+
+
+
+
+                // const app2 = new Vue({
+                //     el: '#app2',
+                //     data: {
+                //         item: "",
+                //     },
+                //     methods: {
+
+                //         incrementArray() {
+                //             this.$nextTick(function() {
+                //                 this.$set(this.item, results2);
+                //                 // this.splice(0, this.length, ...results2);
+                //                 // this.item.splice(0, 1, results2);
+                //                 // app2 = { ...app2, item: results2 };
+                //                 // this.item = results2;
+                //             })
+  
+                //         }
+                //     }
+  
+
+                // });
+
+
+
+
+
+                // // app2.item = results2;
+                // Vue.nextTick(function () {
+                // // app2.item = results2;
+                //     app2 = { ...app2, item:results2}
+                //     // app2.item.splice(0, 0, results2);
+                // })
+
+
 
             })
+
+
+
 
         }
 
